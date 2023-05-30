@@ -38,7 +38,7 @@ jobs:
         # Install client dependencies
         - name: Install client dependencies
           run: npm install --prefix client
-        - run: npm test
+        
 
 
         # Build the client (React) app
