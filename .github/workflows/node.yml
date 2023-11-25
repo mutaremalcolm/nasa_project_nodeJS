@@ -10,9 +10,11 @@ jobs:
   build:
     env:
        CI: true
+       MONGO_URL: mongodb://localhost/nasa
     strategy:
      matrix: 
         node-version: [20.x, 22.x]
+        mongodb-version: ['4.2', '4.4']
     runs-on: ubuntu-latest
 
     steps: 
@@ -26,12 +28,18 @@ jobs:
             node-version: ${{ matrix.node-version }} 
 
         # Install server-side dependencies
+        - name: MongoDB Action
+          uses: SusanDoggie/mongodb-action@0.0.1
+          with: 
+            mongodb-version: ${{ matrix.mongodb-version }}
         - name: Install server dependencies
           run: npm install
 
         # Install client dependencies
         - name: Install client dependencies
           run: npm install --prefix client
+        - run: npm test
+
 
         # Build the client (React) app
         - name: Build client
