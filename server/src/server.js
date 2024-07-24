@@ -6,7 +6,7 @@ const { loadPlanetsData } = require('./models/planets.model');
 
 const PORT = process.env.PORT || 8000;
 
-const MONGO_URL = 'mongodb+srv://mutarem:1XzQISPnwuT11QPE@cluster0.i4gfqsy.mongodb.net/?retryWrites=true&w=majority&appName=nasa';
+const MONGO_URL = 'mongodb+srv://mutarem:1XzQISPnwuT11QPE@nasa.i4gfqsy.mongodb.net/?retryWrites=true&w=majority&appName=nasa&ssl=true';
 
 const server = http.createServer(app);
 
@@ -19,10 +19,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 async function startServer() {
-    await mongoose.connect(MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+    await mongoose.connect(MONGO_URL);
     await loadPlanetsData();
 
     server.listen(PORT, () => {
