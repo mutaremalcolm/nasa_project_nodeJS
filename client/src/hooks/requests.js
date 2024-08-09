@@ -32,12 +32,6 @@ async function httpSubmitLaunch(launch) {
   }
 
 }
-
-{
-
-  // Submit given launch data to launch system.
-}
-
 // Delete launch with given ID
 async function httpAbortLaunch(id) {
   try {
