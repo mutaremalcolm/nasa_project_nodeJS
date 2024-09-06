@@ -19,7 +19,6 @@ const launchesSchema = new mongoose.Schema({
     },
     target: {
         type: String,
-        required: true,
     },
     upcoming: {
         type: Boolean,
@@ -30,7 +29,7 @@ const launchesSchema = new mongoose.Schema({
         required: true,
         default: true,
     },
-});
+}); 
 
 // connects launchesSchema with the "launches" collection 
 module.exports =  mongoose.model('Launch', launchesSchema);
